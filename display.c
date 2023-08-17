@@ -1,8 +1,8 @@
-#include "mot.h"
+#include <stdio.h>
 
-
-void affiche_pendu() //Ascii des pendus
+void displaygame(int fail, char hidenword[], char wrongchar[])
 {
+	//Ascii of the hangman
 	switch(fail)
 	{
 		case 0:
@@ -33,26 +33,6 @@ void affiche_pendu() //Ascii des pendus
 			printf(" ---------\n |  	 |\n 0	 |\n-|-	 |\n// 	 |\n 	 |\n 	 |\n  -------|\n");
 			break;
 	}
-}
-
-void main()
-{
-	char mainMot[25] = {0};
-	char tabFauxChar[6] = {0};
-	char *mainMotCache = NULL;
-	int win = 1, loose = 1;;
-
-	affiche_pendu();
-	saisieMot(mainMot);
-	initialisationMotMasque(mainMot, &mainMotCache);
-
-	do
-	{
-		saisieChar(mainMot, &mainMotCache, tabFauxChar);
-		viderBuffer();
-		affiche_pendu();
-		winCon(mainMot, &mainMotCache, &win, &loose);
-	}while(win != 0 && loose != 0);
-
-	free(mainMotCache);
+	//Words
+	printf("Word : %s\nList of wrong char tried : %s\n", hidenword, wrongchar);
 }
